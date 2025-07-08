@@ -61,7 +61,7 @@ const HeroSection = () => {
           <div className="relative">
             <div className="relative overflow-hidden rounded-2xl shadow-large">
               <img 
-                src="/lovable-uploads/a5e3cb78-1b2b-4ce2-9a51-b3c8367a946e.png"
+                src="/lovable-uploads/17ec5cff-d060-42e7-9e2e-2d67e9157f93.png"
                 alt="Tap-N-Grab Smart Market in Luxury Apartment"
                 className="w-full h-auto object-cover"
               />
