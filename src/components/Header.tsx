@@ -26,7 +26,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/bbfa115a-c931-4ae6-a6fc-8560eb6c83b2.png" 
               alt="Tap-N-Grab" 
-              className="h-8 w-auto"
+              className="h-12 w-auto"
             />
           </Link>
 
