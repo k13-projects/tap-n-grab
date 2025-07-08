@@ -27,7 +27,7 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <img alt="Tap-N-Grab" className="h-8 w-auto" src="/lovable-uploads/779b33ac-0b2b-4d86-ab77-989b042c6005.png" />
+            <img alt="Tap-N-Grab" className="h-16 w-auto" src="/lovable-uploads/779b33ac-0b2b-4d86-ab77-989b042c6005.png" />
           </Link>
 
           {/* Desktop Navigation */}
