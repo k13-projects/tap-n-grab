@@ -17,7 +17,7 @@ const HeroSection = () => {
           <div className="space-y-8">
             <div className="space-y-4">
               <h1 className="text-4xl md:text-6xl font-bold text-brand-dark leading-tight">
-                Offer Residents an 
+                Offer Your Residents an 
                 <span className="bg-gradient-hero bg-clip-text text-transparent"> Amenity They'll Love</span>
               </h1>
               <p className="text-xl text-brand-gray max-w-lg">
