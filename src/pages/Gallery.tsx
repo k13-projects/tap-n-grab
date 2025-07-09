@@ -9,7 +9,7 @@ const Gallery = () => {
     {
       id: 1,
       type: 'image',
-      src: '/lovable-uploads/58e6a544-3261-4624-a131-58decd7a00dc.png',
+      src: '/lovable-uploads/cf478d22-8b25-4642-beb9-fbc803c97e7c.png',
       title: 'Luxury Apartment Installation',
       description: 'Tap-N-Grab smart market seamlessly integrated into a modern apartment lobby setting',
       category: 'Installation'
