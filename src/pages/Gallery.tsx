@@ -33,7 +33,7 @@ const Gallery = () => {
     {
       id: 4,
       type: 'interaction',
-      src: '/lovable-uploads/58e6a544-3261-4624-a131-58decd7a00dc.png',
+      src: '/lovable-uploads/1517b24e-d197-4c40-b068-53205b8b29fb.png',
       title: 'Contactless Payment',
       description: 'Simple tap-to-pay technology for hygienic, convenient transactions',
       category: 'Technology'
