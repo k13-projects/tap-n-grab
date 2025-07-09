@@ -17,8 +17,8 @@ const HeroSection = () => {
           <div className="space-y-8">
             <div className="space-y-4">
               <h1 className="text-4xl md:text-6xl font-bold text-brand-dark leading-tight">
-                Offer Your Residents an 
-                <span className="bg-gradient-hero bg-clip-text text-transparent"> Amenity They'll Love</span>
+                Offer Your Residents an{" "}
+                <span className="bg-gradient-hero bg-clip-text text-transparent">Amenity They'll Love</span>
               </h1>
               <p className="text-xl text-brand-gray max-w-lg">
                 The smarter, sleeker amenity for your residents. 24/7 access to curated snacks and drinks with zero property management required.
