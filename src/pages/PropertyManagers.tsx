@@ -6,62 +6,45 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { CheckCircle, Download, User, Calendar, FileText, Phone, Play, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
-
 const PropertyManagers = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  const benefits = [
-    {
-      icon: CheckCircle,
-      title: 'Zero Upfront Costs',
-      description: 'No installation fees, equipment costs, or monthly charges for your property.'
-    },
-    {
-      icon: CheckCircle,
-      title: 'Zero Management Work',
-      description: 'We handle stocking, maintenance, customer service, and all operations.'
-    },
-    {
-      icon: CheckCircle,
-      title: 'Resident Satisfaction',
-      description: '24/7 premium amenity that residents actually use and love.'
-    },
-    {
-      icon: CheckCircle,
-      title: 'Professional Installation',
-      description: 'Expert setup with minimal disruption to your daily operations.'
-    }
-  ];
-
-  const faqItems = [
-    {
-      question: 'What are the costs for property management?',
-      answer: 'There are zero costs for property management. We handle all installation, maintenance, stocking, and operations at no charge to you.'
-    },
-    {
-      question: 'How long does installation take?',
-      answer: 'Installation typically takes 2-4 hours with minimal disruption to residents. Traig coordinates everything in advance.'
-    },
-    {
-      question: 'What happens if the machine breaks?',
-      answer: 'We provide 24/7 monitoring and rapid response for any technical issues. All maintenance is included at no cost.'
-    },
-    {
-      question: 'How do you choose products?',
-      answer: 'We curate selections based on local preferences, resident feedback, and premium quality standards.'
-    },
-    {
-      question: 'How do residents pay?',
-      answer: 'Contactless payment via tap-to-pay with phone or card. No cash handling required.'
-    },
-    {
-      question: 'What about the weekly raffle?',
-      answer: 'We automatically run weekly resident raffles using 2% of profits, creating community engagement and excitement.'
-    }
-  ];
-
-  return (
-    <div className="min-h-screen">
+  const benefits = [{
+    icon: CheckCircle,
+    title: 'Zero Upfront Costs',
+    description: 'No installation fees, equipment costs, or monthly charges for your property.'
+  }, {
+    icon: CheckCircle,
+    title: 'Zero Management Work',
+    description: 'We handle stocking, maintenance, customer service, and all operations.'
+  }, {
+    icon: CheckCircle,
+    title: 'Resident Satisfaction',
+    description: '24/7 premium amenity that residents actually use and love.'
+  }, {
+    icon: CheckCircle,
+    title: 'Professional Installation',
+    description: 'Expert setup with minimal disruption to your daily operations.'
+  }];
+  const faqItems = [{
+    question: 'What are the costs for property management?',
+    answer: 'There are zero costs for property management. We handle all installation, maintenance, stocking, and operations at no charge to you.'
+  }, {
+    question: 'How long does installation take?',
+    answer: 'Installation typically takes 2-4 hours with minimal disruption to residents. Traig coordinates everything in advance.'
+  }, {
+    question: 'What happens if the machine breaks?',
+    answer: 'We provide 24/7 monitoring and rapid response for any technical issues. All maintenance is included at no cost.'
+  }, {
+    question: 'How do you choose products?',
+    answer: 'We curate selections based on local preferences, resident feedback, and premium quality standards.'
+  }, {
+    question: 'How do residents pay?',
+    answer: 'Contactless payment via tap-to-pay with phone or card. No cash handling required.'
+  }, {
+    question: 'What about the weekly raffle?',
+    answer: 'We automatically run weekly resident raffles using 2% of profits, creating community engagement and excitement.'
+  }];
+  return <div className="min-h-screen">
       <Header />
       <main className="pt-16">
         {/* Hero Section */}
@@ -94,8 +77,7 @@ const PropertyManagers = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {benefits.map((benefit, index) => (
-                <Card key={index} className="p-6 hover:shadow-medium transition-all duration-300">
+              {benefits.map((benefit, index) => <Card key={index} className="p-6 hover:shadow-medium transition-all duration-300">
                   <CardContent className="p-0">
                     <div className="flex items-start space-x-4">
                       <div className="p-3 bg-brand-teal-light rounded-lg">
@@ -111,8 +93,7 @@ const PropertyManagers = () => {
                       </div>
                     </div>
                   </CardContent>
-                </Card>
-              ))}
+                </Card>)}
             </div>
           </div>
         </section>
@@ -158,11 +139,7 @@ const PropertyManagers = () => {
                 <div className="relative">
                   <Card className="overflow-hidden">
                     <CardContent className="p-0 relative">
-                      <img 
-                        src="/lovable-uploads/a5e3cb78-1b2b-4ce2-9a51-b3c8367a946e.png"
-                        alt="Traig's Pitch Presentation"
-                        className="w-full h-auto"
-                      />
+                      <img src="/lovable-uploads/a5e3cb78-1b2b-4ce2-9a51-b3c8367a946e.png" alt="Traig's Pitch Presentation" className="w-full h-auto" />
                       <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                         <Button variant="hero" size="lg" className="bg-white/20 backdrop-blur-sm border-2 border-white">
                           <Play className="mr-2 h-5 w-5" />
@@ -191,34 +168,23 @@ const PropertyManagers = () => {
               </div>
 
               <div className="space-y-4">
-                {faqItems.map((item, index) => (
-                  <Card key={index} className="overflow-hidden">
+                {faqItems.map((item, index) => <Card key={index} className="overflow-hidden">
                     <CardContent className="p-0">
-                      <button
-                        className="w-full text-left p-6 hover:bg-brand-teal-light transition-colors"
-                        onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                      >
+                      <button className="w-full text-left p-6 hover:bg-brand-teal-light transition-colors" onClick={() => setOpenFaq(openFaq === index ? null : index)}>
                         <div className="flex justify-between items-center">
                           <h3 className="text-lg font-semibold text-brand-dark">
                             {item.question}
                           </h3>
-                          <ChevronDown 
-                            className={`h-5 w-5 text-brand-teal transition-transform ${
-                              openFaq === index ? 'rotate-180' : ''
-                            }`}
-                          />
+                          <ChevronDown className={`h-5 w-5 text-brand-teal transition-transform ${openFaq === index ? 'rotate-180' : ''}`} />
                         </div>
                       </button>
-                      {openFaq === index && (
-                        <div className="px-6 pb-6">
+                      {openFaq === index && <div className="px-6 pb-6">
                           <p className="text-brand-gray">
                             {item.answer}
                           </p>
-                        </div>
-                      )}
+                        </div>}
                     </CardContent>
-                  </Card>
-                ))}
+                  </Card>)}
               </div>
             </div>
           </div>
@@ -243,7 +209,7 @@ const PropertyManagers = () => {
                         T
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold text-brand-dark">Traig Anderson</h3>
+                        <h3 className="text-xl font-semibold text-brand-dark">Traig Hall</h3>
                         <p className="text-brand-gray">Installation Specialist & Property Liaison</p>
                       </div>
                     </div>
@@ -309,10 +275,7 @@ const PropertyManagers = () => {
                       <label className="block text-sm font-medium text-brand-dark mb-2">
                         Message
                       </label>
-                      <Textarea 
-                        placeholder="Tell us about your property and when you'd like to schedule a tour..."
-                        rows={4}
-                      />
+                      <Textarea placeholder="Tell us about your property and when you'd like to schedule a tour..." rows={4} />
                     </div>
                     
                     <Button variant="hero" size="lg" className="w-full">
@@ -396,8 +359,6 @@ const PropertyManagers = () => {
         </section>
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default PropertyManagers;
