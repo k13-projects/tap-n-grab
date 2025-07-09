@@ -1,10 +1,8 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Eye, ShoppingCart, Smartphone } from 'lucide-react';
-
 const ProductShowcase = () => {
-  return (
-    <section className="py-20 bg-brand-teal-light">
+  return <section className="py-20 bg-brand-teal-light">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
@@ -21,20 +19,12 @@ const ProductShowcase = () => {
             <div className="grid grid-cols-2 gap-4">
               <Card className="overflow-hidden group hover:shadow-medium transition-all duration-300">
                 <CardContent className="p-0">
-                  <img 
-                    src="/lovable-uploads/e3b09f69-0942-49c1-99d5-87f00119a71f.png"
-                    alt="Tap-N-Grab Product Selection"
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                  <img src="/lovable-uploads/e3b09f69-0942-49c1-99d5-87f00119a71f.png" alt="Tap-N-Grab Product Selection" className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
                 </CardContent>
               </Card>
               <Card className="overflow-hidden group hover:shadow-medium transition-all duration-300">
                 <CardContent className="p-0">
-                  <img 
-                    src="/lovable-uploads/17ec5cff-d060-42e7-9e2e-2d67e9157f93.png"
-                    alt="Premium Beverage Selection"
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                  <img alt="Premium Beverage Selection" className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" src="/lovable-uploads/ff322a96-bfdb-4e8e-91b5-9b5ce510b046.png" />
                 </CardContent>
               </Card>
             </div>
@@ -42,11 +32,7 @@ const ProductShowcase = () => {
             {/* Contactless Payment Icon */}
             <Card className="bg-white p-6 text-center">
               <CardContent className="p-0">
-                <img 
-                  src="/lovable-uploads/09d49f29-411f-46af-aba6-3fb4a04d9ff6.png"
-                  alt="Contactless Payment"
-                  className="w-16 h-16 mx-auto mb-4"
-                />
+                <img src="/lovable-uploads/09d49f29-411f-46af-aba6-3fb4a04d9ff6.png" alt="Contactless Payment" className="w-16 h-16 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-brand-dark mb-2">
                   Tap & Go Payment
                 </h3>
@@ -123,8 +109,6 @@ const ProductShowcase = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ProductShowcase;
