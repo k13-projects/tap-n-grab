@@ -3,26 +3,28 @@ import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Quote } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import Picture from '@/components/Picture';
+
+const TESTIMONIALS = [
+  {
+    quote: 'Our residents absolutely love it - especially the weekly giveaways.',
+    author: 'Sarah Mitchell',
+    role: 'Property Manager, Luxury Heights Apartments',
+  },
+  {
+    quote: 'Zero maintenance for us, maximum convenience for residents. Perfect amenity.',
+    author: 'Michael Chen',
+    role: 'Community Director, Metro Living',
+  },
+  {
+    quote: 'The installation was seamless and the residents use it daily. Great addition.',
+    author: 'Jennifer Rodriguez',
+    role: 'Leasing Manager, Skyline Residences',
+  },
+];
 
 const About = () => {
-  const testimonials = [
-    {
-      quote: "Our residents absolutely love it - especially the weekly giveaways.",
-      author: "Sarah Mitchell",
-      role: "Property Manager, Luxury Heights Apartments"
-    },
-    {
-      quote: "Zero maintenance for us, maximum convenience for residents. Perfect amenity.",
-      author: "Michael Chen",
-      role: "Community Director, Metro Living"
-    },
-    {
-      quote: "The installation was seamless and the residents use it daily. Great addition.",
-      author: "Jennifer Rodriguez",
-      role: "Leasing Manager, Skyline Residences"
-    }
-  ];
-
   return (
     <div className="min-h-screen">
       <Header />
@@ -56,14 +58,16 @@ const About = () => {
                   <p className="text-lg text-brand-gray leading-relaxed">
                     Founded with the vision of creating better living experiences, we've partnered with luxury apartment communities nationwide to bring residents the amenities they actually want and use.
                   </p>
-                  <Button variant="hero" size="lg">
-                    Partner With Us
+                  <Button asChild variant="hero" size="lg">
+                    <Link to="/property-managers">Partner With Us</Link>
                   </Button>
                 </div>
                 <div className="relative">
-                  <img 
+                  <Picture
                     src="/lovable-uploads/e3b09f69-0942-49c1-99d5-87f00119a71f.png"
                     alt="Tap-N-Grab Smart Market"
+                    width={1536}
+                    height={1024}
                     className="w-full rounded-2xl shadow-large"
                   />
                 </div>
@@ -137,8 +141,8 @@ const About = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {testimonials.map((testimonial, index) => (
-                <Card key={index} className="p-6 hover:shadow-medium transition-all duration-300">
+              {TESTIMONIALS.map((testimonial) => (
+                <Card key={testimonial.author} className="p-6 hover:shadow-medium transition-all duration-300">
                   <CardContent className="p-0">
                     <Quote className="h-8 w-8 text-brand-teal mb-4" />
                     <p className="text-brand-gray mb-6 italic">
@@ -169,11 +173,11 @@ const About = () => {
               Join the growing number of luxury apartment communities offering Tap-N-Grab to their residents.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="hero" size="xl">
-                Schedule a Tour
+              <Button asChild variant="hero" size="xl">
+                <Link to="/property-managers">Schedule a Tour</Link>
               </Button>
-              <Button variant="outline" size="xl" className="border-white text-white hover:bg-white hover:text-brand-dark">
-                Request Callback
+              <Button asChild variant="outline" size="xl" className="border-white text-white hover:bg-white hover:text-brand-dark">
+                <Link to="/property-managers#callback">Request Callback</Link>
               </Button>
             </div>
           </div>
