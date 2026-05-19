@@ -3,70 +3,72 @@ import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Eye, Play } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import Picture from '@/components/Picture';
+
+const GALLERY_ITEMS = [
+  {
+    id: 1,
+    type: 'image',
+    src: '/lovable-uploads/cf478d22-8b25-4642-beb9-fbc803c97e7c.png',
+    title: 'Luxury Apartment Installation',
+    description: 'Tap-N-Grab smart market seamlessly integrated into a modern apartment lobby setting',
+    category: 'Installation',
+  },
+  {
+    id: 2,
+    type: 'image',
+    src: '/lovable-uploads/e3b09f69-0942-49c1-99d5-87f00119a71f.png',
+    title: 'Premium Product Selection',
+    description: 'Curated beverages and healthy snacks for discerning luxury residents',
+    category: 'Products',
+  },
+  {
+    id: 3,
+    type: 'image',
+    src: '/lovable-uploads/17ec5cff-d060-42e7-9e2e-2d67e9157f93.png',
+    title: 'Modern Design Aesthetic',
+    description: 'Sleek glass-front display that complements contemporary interior design',
+    category: 'Design',
+  },
+  {
+    id: 4,
+    type: 'interaction',
+    src: '/lovable-uploads/1517b24e-d197-4c40-b068-53205b8b29fb.png',
+    title: 'Contactless Payment',
+    description: 'Simple tap-to-pay technology for hygienic, convenient transactions',
+    category: 'Technology',
+  },
+];
+
+const INSTALLATION_STEPS = [
+  {
+    step: 1,
+    title: 'Site Assessment',
+    description: 'Traig visits to determine optimal placement and setup requirements',
+    image: '/lovable-uploads/a5e3cb78-1b2b-4ce2-9a51-b3c8367a946e.png',
+  },
+  {
+    step: 2,
+    title: 'Professional Installation',
+    description: 'Expert setup with minimal disruption to residents and daily operations',
+    image: '/lovable-uploads/e3b09f69-0942-49c1-99d5-87f00119a71f.png',
+  },
+  {
+    step: 3,
+    title: 'Product Curation',
+    description: 'Initial stocking with premium selection based on resident preferences',
+    image: '/lovable-uploads/17ec5cff-d060-42e7-9e2e-2d67e9157f93.png',
+  },
+  {
+    step: 4,
+    title: 'Resident Activation',
+    description: 'Launch with resident orientation and weekly raffle program activation',
+    image: '/lovable-uploads/09d49f29-411f-46af-aba6-3fb4a04d9ff6.png',
+  },
+];
 
 const Gallery = () => {
-  const galleryItems = [
-    {
-      id: 1,
-      type: 'image',
-      src: '/lovable-uploads/cf478d22-8b25-4642-beb9-fbc803c97e7c.png',
-      title: 'Luxury Apartment Installation',
-      description: 'Tap-N-Grab smart market seamlessly integrated into a modern apartment lobby setting',
-      category: 'Installation'
-    },
-    {
-      id: 2,
-      type: 'image',
-      src: '/lovable-uploads/e3b09f69-0942-49c1-99d5-87f00119a71f.png',
-      title: 'Premium Product Selection',
-      description: 'Curated beverages and healthy snacks for discerning luxury residents',
-      category: 'Products'
-    },
-    {
-      id: 3,
-      type: 'image',
-      src: '/lovable-uploads/17ec5cff-d060-42e7-9e2e-2d67e9157f93.png',
-      title: 'Modern Design Aesthetic',
-      description: 'Sleek glass-front display that complements contemporary interior design',
-      category: 'Design'
-    },
-    {
-      id: 4,
-      type: 'interaction',
-      src: '/lovable-uploads/1517b24e-d197-4c40-b068-53205b8b29fb.png',
-      title: 'Contactless Payment',
-      description: 'Simple tap-to-pay technology for hygienic, convenient transactions',
-      category: 'Technology'
-    }
-  ];
-
-  const installationSteps = [
-    {
-      step: 1,
-      title: 'Site Assessment',
-      description: 'Traig visits to determine optimal placement and setup requirements',
-      image: '/lovable-uploads/a5e3cb78-1b2b-4ce2-9a51-b3c8367a946e.png'
-    },
-    {
-      step: 2,
-      title: 'Professional Installation',
-      description: 'Expert setup with minimal disruption to residents and daily operations',
-      image: '/lovable-uploads/e3b09f69-0942-49c1-99d5-87f00119a71f.png'
-    },
-    {
-      step: 3,
-      title: 'Product Curation',
-      description: 'Initial stocking with premium selection based on resident preferences',
-      image: '/lovable-uploads/17ec5cff-d060-42e7-9e2e-2d67e9157f93.png'
-    },
-    {
-      step: 4,
-      title: 'Resident Activation',
-      description: 'Launch with resident orientation and weekly raffle program activation',
-      image: '/lovable-uploads/09d49f29-411f-46af-aba6-3fb4a04d9ff6.png'
-    }
-  ];
-
   return (
     <div className="min-h-screen">
       <Header />
@@ -81,8 +83,8 @@ const Gallery = () => {
               <p className="text-xl text-brand-gray mb-8">
                 See Tap-N-Grab in action across luxury apartment communities nationwide. Real installations, real residents, real results.
               </p>
-              <Button variant="hero" size="xl">
-                Schedule Your Installation
+              <Button asChild variant="hero" size="xl">
+                <Link to="/property-managers">Schedule Your Installation</Link>
               </Button>
             </div>
           </div>
@@ -101,13 +103,15 @@ const Gallery = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-              {galleryItems.map((item) => (
+              {GALLERY_ITEMS.map((item) => (
                 <Card key={item.id} className="group overflow-hidden hover:shadow-large transition-all duration-300">
                   <CardContent className="p-0">
                     <div className="relative overflow-hidden">
-                      <img 
+                      <Picture
                         src={item.src}
                         alt={item.title}
+                        width={800}
+                        height={640}
                         className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
@@ -172,9 +176,11 @@ const Gallery = () => {
                 <div className="relative">
                   <Card className="overflow-hidden">
                     <CardContent className="p-0 relative">
-                      <img 
+                      <Picture
                         src="/lovable-uploads/a5e3cb78-1b2b-4ce2-9a51-b3c8367a946e.png"
                         alt="Resident Using Tap-N-Grab"
+                        width={800}
+                        height={512}
                         className="w-full h-64 object-cover"
                       />
                       <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
@@ -204,7 +210,7 @@ const Gallery = () => {
             </div>
 
             <div className="space-y-16">
-              {installationSteps.map((step, index) => (
+              {INSTALLATION_STEPS.map((step, index) => (
                 <div key={step.step} className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
                   <div className={`space-y-6 ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
                     <div className="flex items-center space-x-4">
@@ -231,9 +237,11 @@ const Gallery = () => {
                   <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}>
                     <Card className="overflow-hidden">
                       <CardContent className="p-0">
-                        <img 
+                        <Picture
                           src={step.image}
                           alt={step.title}
+                          width={800}
+                          height={512}
                           className="w-full h-64 object-cover"
                         />
                       </CardContent>
@@ -316,11 +324,11 @@ const Gallery = () => {
               Schedule a tour with Traig to see how Tap-N-Grab can enhance your property amenities with zero cost and zero work for your team.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="hero" size="xl">
-                Schedule Installation Tour
+              <Button asChild variant="hero" size="xl">
+                <Link to="/property-managers">Schedule Installation Tour</Link>
               </Button>
-              <Button variant="outline" size="xl" className="border-white text-white hover:bg-white hover:text-brand-dark">
-                Download Gallery PDF
+              <Button asChild variant="outline" size="xl" className="border-white text-white hover:bg-white hover:text-brand-dark">
+                <Link to="/property-managers#callback">Request Callback</Link>
               </Button>
             </div>
           </div>

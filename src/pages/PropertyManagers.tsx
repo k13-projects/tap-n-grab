@@ -5,45 +5,96 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { CheckCircle, Download, User, Calendar, FileText, Phone, Play, ChevronDown } from 'lucide-react';
-import { useState } from 'react';
-const PropertyManagers = () => {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const benefits = [{
+import { useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import Picture from '@/components/Picture';
+
+const CONTACT_EMAIL = 'hello@tapngrab.us';
+const BENEFITS = [
+  {
     icon: CheckCircle,
     title: 'Zero Upfront Costs',
-    description: 'No installation fees, equipment costs, or monthly charges for your property.'
-  }, {
+    description: 'No installation fees, equipment costs, or monthly charges for your property.',
+  },
+  {
     icon: CheckCircle,
     title: 'Zero Management Work',
-    description: 'We handle stocking, maintenance, customer service, and all operations.'
-  }, {
+    description: 'We handle stocking, maintenance, customer service, and all operations.',
+  },
+  {
     icon: CheckCircle,
     title: 'Resident Satisfaction',
-    description: '24/7 premium amenity that residents actually use and love.'
-  }, {
+    description: '24/7 premium amenity that residents actually use and love.',
+  },
+  {
     icon: CheckCircle,
     title: 'Professional Installation',
-    description: 'Expert setup with minimal disruption to your daily operations.'
-  }];
-  const faqItems = [{
+    description: 'Expert setup with minimal disruption to your daily operations.',
+  },
+];
+
+const FAQ_ITEMS = [
+  {
     question: 'What are the costs for property management?',
-    answer: 'There are zero costs for property management. We handle all installation, maintenance, stocking, and operations at no charge to you.'
-  }, {
+    answer: 'There are zero costs for property management. We handle all installation, maintenance, stocking, and operations at no charge to you.',
+  },
+  {
     question: 'How long does installation take?',
-    answer: 'Installation typically takes 2-4 hours with minimal disruption to residents. Traig coordinates everything in advance.'
-  }, {
+    answer: 'Installation typically takes 2-4 hours with minimal disruption to residents. Traig coordinates everything in advance.',
+  },
+  {
     question: 'What happens if the machine breaks?',
-    answer: 'We provide 24/7 monitoring and rapid response for any technical issues. All maintenance is included at no cost.'
-  }, {
+    answer: 'We provide 24/7 monitoring and rapid response for any technical issues. All maintenance is included at no cost.',
+  },
+  {
     question: 'How do you choose products?',
-    answer: 'We curate selections based on local preferences, resident feedback, and premium quality standards.'
-  }, {
+    answer: 'We curate selections based on local preferences, resident feedback, and premium quality standards.',
+  },
+  {
     question: 'How do residents pay?',
-    answer: 'Contactless payment via tap-to-pay with phone or card. No cash handling required.'
-  }, {
+    answer: 'Contactless payment via tap-to-pay with phone or card. No cash handling required.',
+  },
+  {
     question: 'What about the weekly raffle?',
-    answer: 'We automatically run weekly resident raffles using 2% of profits, creating community engagement and excitement.'
-  }];
+    answer: 'We automatically run weekly resident raffles using 2% of profits, creating community engagement and excitement.',
+  },
+];
+
+const PropertyManagers = () => {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const callbackRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === '#callback') {
+      callbackRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [location.hash]);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const get = (key: string) => String(formData.get(key) ?? '').trim();
+    const firstName = get('firstName');
+    const lastName = get('lastName');
+    const propertyName = get('propertyName');
+    const email = get('email');
+    const phone = get('phone');
+    const message = get('message');
+
+    const subject = `Tour request from ${[firstName, lastName].filter(Boolean).join(' ') || 'a property manager'}`;
+    const body = [
+      `Name: ${firstName} ${lastName}`.trim(),
+      `Property: ${propertyName}`,
+      `Email: ${email}`,
+      `Phone: ${phone}`,
+      '',
+      'Message:',
+      message,
+    ].join('\n');
+
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
   return <div className="min-h-screen">
       <Header />
       <main className="pt-16">
@@ -57,7 +108,11 @@ const PropertyManagers = () => {
               <p className="text-xl text-brand-gray mb-8">
                 Transform your property amenities with zero cost and zero work. Let Traig show you how Tap-N-Grab can enhance resident satisfaction.
               </p>
-              <Button variant="hero" size="xl">
+              <Button
+                variant="hero"
+                size="xl"
+                onClick={() => callbackRef.current?.scrollIntoView({ behavior: 'smooth' })}
+              >
                 Schedule a Tour with Traig
               </Button>
             </div>
@@ -77,7 +132,7 @@ const PropertyManagers = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {benefits.map((benefit, index) => <Card key={index} className="p-6 hover:shadow-medium transition-all duration-300">
+              {BENEFITS.map((benefit) => <Card key={benefit.title} className="p-6 hover:shadow-medium transition-all duration-300">
                   <CardContent className="p-0">
                     <div className="flex items-start space-x-4">
                       <div className="p-3 bg-brand-teal-light rounded-lg">
@@ -130,7 +185,11 @@ const PropertyManagers = () => {
                     </div>
                   </div>
 
-                  <Button variant="hero" size="lg">
+                  <Button
+                    variant="hero"
+                    size="lg"
+                    onClick={() => callbackRef.current?.scrollIntoView({ behavior: 'smooth' })}
+                  >
                     <Play className="mr-2 h-5 w-5" />
                     View Presentation
                   </Button>
@@ -139,7 +198,7 @@ const PropertyManagers = () => {
                 <div className="relative">
                   <Card className="overflow-hidden">
                     <CardContent className="p-0 relative">
-                      <img src="/lovable-uploads/a5e3cb78-1b2b-4ce2-9a51-b3c8367a946e.png" alt="Traig's Pitch Presentation" className="w-full h-auto" />
+                      <Picture src="/lovable-uploads/a5e3cb78-1b2b-4ce2-9a51-b3c8367a946e.png" alt="Traig's Pitch Presentation" width={1024} height={1536} className="w-full h-auto" />
                       <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                         <Button variant="hero" size="lg" className="bg-white/20 backdrop-blur-sm border-2 border-white">
                           <Play className="mr-2 h-5 w-5" />
@@ -168,30 +227,52 @@ const PropertyManagers = () => {
               </div>
 
               <div className="space-y-4">
-                {faqItems.map((item, index) => <Card key={index} className="overflow-hidden">
-                    <CardContent className="p-0">
-                      <button className="w-full text-left p-6 hover:bg-brand-teal-light transition-colors" onClick={() => setOpenFaq(openFaq === index ? null : index)}>
-                        <div className="flex justify-between items-center">
-                          <h3 className="text-lg font-semibold text-brand-dark">
-                            {item.question}
-                          </h3>
-                          <ChevronDown className={`h-5 w-5 text-brand-teal transition-transform ${openFaq === index ? 'rotate-180' : ''}`} />
-                        </div>
-                      </button>
-                      {openFaq === index && <div className="px-6 pb-6">
-                          <p className="text-brand-gray">
-                            {item.answer}
-                          </p>
-                        </div>}
-                    </CardContent>
-                  </Card>)}
+                {FAQ_ITEMS.map((item, index) => {
+                  const isOpen = openFaq === index;
+                  const panelId = `faq-panel-${index}`;
+                  const buttonId = `faq-button-${index}`;
+                  return (
+                    <Card key={item.question} className="overflow-hidden">
+                      <CardContent className="p-0">
+                        <button
+                          type="button"
+                          id={buttonId}
+                          aria-expanded={isOpen}
+                          aria-controls={panelId}
+                          className="w-full text-left p-6 hover:bg-brand-teal-light transition-colors"
+                          onClick={() => setOpenFaq(isOpen ? null : index)}
+                        >
+                          <div className="flex justify-between items-center">
+                            <h3 className="text-lg font-semibold text-brand-dark">
+                              {item.question}
+                            </h3>
+                            <ChevronDown
+                              aria-hidden="true"
+                              className={`h-5 w-5 text-brand-teal transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                            />
+                          </div>
+                        </button>
+                        {isOpen && (
+                          <div
+                            id={panelId}
+                            role="region"
+                            aria-labelledby={buttonId}
+                            className="px-6 pb-6"
+                          >
+                            <p className="text-brand-gray">{item.answer}</p>
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  );
+                })}
               </div>
             </div>
           </div>
         </section>
 
         {/* Traig Contact Section */}
-        <section className="py-20 bg-brand-teal-light">
+        <section id="callback" ref={callbackRef} className="py-20 bg-brand-teal-light scroll-mt-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -219,13 +300,17 @@ const PropertyManagers = () => {
                   </div>
 
                   <div className="flex space-x-4">
-                    <Button variant="hero" size="lg">
-                      <Calendar className="mr-2 h-5 w-5" />
-                      Schedule with Traig
+                    <Button asChild variant="hero" size="lg">
+                      <a href={`mailto:${CONTACT_EMAIL}?subject=Schedule%20a%20tour%20with%20Traig`}>
+                        <Calendar className="mr-2 h-5 w-5" />
+                        Schedule with Traig
+                      </a>
                     </Button>
-                    <Button variant="outline" size="lg">
-                      <Phone className="mr-2 h-5 w-5" />
-                      Request Callback
+                    <Button asChild variant="outline" size="lg">
+                      <a href={`mailto:${CONTACT_EMAIL}?subject=Callback%20request`}>
+                        <Phone className="mr-2 h-5 w-5" />
+                        Request Callback
+                      </a>
                     </Button>
                   </div>
                 </div>
@@ -234,51 +319,51 @@ const PropertyManagers = () => {
                   <h3 className="text-2xl font-bold text-brand-dark mb-6">
                     Request a Callback
                   </h3>
-                  <form className="space-y-4">
+                  <form className="space-y-4" onSubmit={handleSubmit}>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium text-brand-dark mb-2">
+                        <label htmlFor="firstName" className="block text-sm font-medium text-brand-dark mb-2">
                           First Name
                         </label>
-                        <Input placeholder="John" />
+                        <Input id="firstName" name="firstName" autoComplete="given-name" placeholder="John" />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-brand-dark mb-2">
+                        <label htmlFor="lastName" className="block text-sm font-medium text-brand-dark mb-2">
                           Last Name
                         </label>
-                        <Input placeholder="Smith" />
+                        <Input id="lastName" name="lastName" autoComplete="family-name" placeholder="Smith" />
                       </div>
                     </div>
-                    
+
                     <div>
-                      <label className="block text-sm font-medium text-brand-dark mb-2">
+                      <label htmlFor="propertyName" className="block text-sm font-medium text-brand-dark mb-2">
                         Property Name
                       </label>
-                      <Input placeholder="Luxury Heights Apartments" />
+                      <Input id="propertyName" name="propertyName" autoComplete="organization" placeholder="Luxury Heights Apartments" />
                     </div>
-                    
+
                     <div>
-                      <label className="block text-sm font-medium text-brand-dark mb-2">
+                      <label htmlFor="email" className="block text-sm font-medium text-brand-dark mb-2">
                         Email
                       </label>
-                      <Input type="email" placeholder="john@property.com" />
+                      <Input id="email" name="email" type="email" autoComplete="email" placeholder="john@property.com" />
                     </div>
-                    
+
                     <div>
-                      <label className="block text-sm font-medium text-brand-dark mb-2">
+                      <label htmlFor="phone" className="block text-sm font-medium text-brand-dark mb-2">
                         Phone
                       </label>
-                      <Input type="tel" placeholder="(555) 123-4567" />
+                      <Input id="phone" name="phone" type="tel" autoComplete="tel" placeholder="(555) 123-4567" />
                     </div>
-                    
+
                     <div>
-                      <label className="block text-sm font-medium text-brand-dark mb-2">
+                      <label htmlFor="message" className="block text-sm font-medium text-brand-dark mb-2">
                         Message
                       </label>
-                      <Textarea placeholder="Tell us about your property and when you'd like to schedule a tour..." rows={4} />
+                      <Textarea id="message" name="message" placeholder="Tell us about your property and when you'd like to schedule a tour..." rows={4} />
                     </div>
-                    
-                    <Button variant="hero" size="lg" className="w-full">
+
+                    <Button type="submit" variant="hero" size="lg" className="w-full">
                       Send Request
                     </Button>
                   </form>

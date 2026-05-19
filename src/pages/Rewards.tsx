@@ -3,75 +3,76 @@ import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Gift, Trophy, Users, Percent, Bell, Star } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+const RAFFLE_FEATURES = [
+  {
+    icon: Percent,
+    title: '2% Profit Share',
+    description: 'Every purchase contributes to the weekly resident raffle prize pool.',
+  },
+  {
+    icon: Bell,
+    title: 'Weekly Drawings',
+    description: 'Automatic weekly raffles keep residents engaged and excited.',
+  },
+  {
+    icon: Users,
+    title: 'Community Building',
+    description: 'Creates shared excitement and community engagement among residents.',
+  },
+  {
+    icon: Trophy,
+    title: 'Real Cash Prizes',
+    description: 'Winners receive actual cash prizes, not just promotional credits.',
+  },
+];
+
+const HOW_IT_WORKS = [
+  {
+    step: 1,
+    title: 'Residents Make Purchases',
+    description: 'Every transaction automatically enters residents into the weekly raffle',
+  },
+  {
+    step: 2,
+    title: 'Prize Pool Grows',
+    description: '2% of all sales revenue contributes to the weekly prize pool',
+  },
+  {
+    step: 3,
+    title: 'Weekly Drawing',
+    description: 'Every Friday, we randomly select a winner from all eligible residents',
+  },
+  {
+    step: 4,
+    title: 'Winner Notification',
+    description: 'Winners are notified immediately and receive their cash prize',
+  },
+];
+
+const TESTIMONIALS = [
+  {
+    quote: 'I won $75 last month! It was such a nice surprise and really brightened my week.',
+    author: 'Emma Rodriguez',
+    location: 'Skyline Residences',
+    emoji: '🎉',
+  },
+  {
+    quote: 'The weekly raffles make buying snacks feel like a fun game. Love the community excitement!',
+    author: 'David Kim',
+    location: 'Metro Living',
+    emoji: '🎲',
+  },
+  {
+    quote: "Even when I don't win, knowing I'm supporting the community prize pool feels good.",
+    author: 'Sarah Chen',
+    location: 'Luxury Heights',
+    emoji: '❤️',
+  },
+];
 
 const Rewards = () => {
-  const raffleFeatures = [
-    {
-      icon: Percent,
-      title: '2% Profit Share',
-      description: 'Every purchase contributes to the weekly resident raffle prize pool.'
-    },
-    {
-      icon: Bell,
-      title: 'Weekly Drawings',
-      description: 'Automatic weekly raffles keep residents engaged and excited.'
-    },
-    {
-      icon: Users,
-      title: 'Community Building',
-      description: 'Creates shared excitement and community engagement among residents.'
-    },
-    {
-      icon: Trophy,
-      title: 'Real Cash Prizes',
-      description: 'Winners receive actual cash prizes, not just promotional credits.'
-    }
-  ];
-
-  const howItWorks = [
-    {
-      step: 1,
-      title: 'Residents Make Purchases',
-      description: 'Every transaction automatically enters residents into the weekly raffle'
-    },
-    {
-      step: 2,
-      title: 'Prize Pool Grows',
-      description: '2% of all sales revenue contributes to the weekly prize pool'
-    },
-    {
-      step: 3,
-      title: 'Weekly Drawing',
-      description: 'Every Friday, we randomly select a winner from all eligible residents'
-    },
-    {
-      step: 4,
-      title: 'Winner Notification',
-      description: 'Winners are notified immediately and receive their cash prize'
-    }
-  ];
-
-  const testimonials = [
-    {
-      quote: "I won $75 last month! It was such a nice surprise and really brightened my week.",
-      author: "Emma Rodriguez",
-      location: "Skyline Residences",
-      emoji: "🎉"
-    },
-    {
-      quote: "The weekly raffles make buying snacks feel like a fun game. Love the community excitement!",
-      author: "David Kim", 
-      location: "Metro Living",
-      emoji: "🎲"
-    },
-    {
-      quote: "Even when I don't win, knowing I'm supporting the community prize pool feels good.",
-      author: "Sarah Chen",
-      location: "Luxury Heights",
-      emoji: "❤️"
-    }
-  ];
-
   return (
     <div className="min-h-screen">
       <Header />
@@ -150,7 +151,7 @@ const Rewards = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {howItWorks.map((step) => (
+              {HOW_IT_WORKS.map((step) => (
                 <Card key={step.step} className="text-center p-6 hover:shadow-medium transition-all duration-300">
                   <CardContent className="p-0">
                     <div className="w-16 h-16 bg-brand-teal text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
@@ -196,8 +197,8 @@ const Rewards = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {raffleFeatures.map((feature, index) => (
-                <Card key={index} className="p-6 hover:shadow-medium transition-all duration-300">
+              {RAFFLE_FEATURES.map((feature) => (
+                <Card key={feature.title} className="p-6 hover:shadow-medium transition-all duration-300">
                   <CardContent className="p-0">
                     <div className="flex items-start space-x-4">
                       <div className="p-3 bg-brand-teal-light rounded-lg">
@@ -232,8 +233,8 @@ const Rewards = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {testimonials.map((testimonial, index) => (
-                <Card key={index} className="p-6 hover:shadow-medium transition-all duration-300">
+              {TESTIMONIALS.map((testimonial) => (
+                <Card key={testimonial.author} className="p-6 hover:shadow-medium transition-all duration-300">
                   <CardContent className="p-0">
                     <div className="text-center mb-4">
                       <span className="text-4xl">{testimonial.emoji}</span>
@@ -397,12 +398,14 @@ const Rewards = () => {
               The raffle system is included with every Tap-N-Grab installation at no additional cost. Start building community engagement today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="hero" size="xl">
-                <Gift className="mr-2 h-5 w-5" />
-                Start Weekly Raffles
+              <Button asChild variant="hero" size="xl">
+                <Link to="/property-managers">
+                  <Gift className="mr-2 h-5 w-5" />
+                  Start Weekly Raffles
+                </Link>
               </Button>
-              <Button variant="outline" size="xl" className="border-white text-white hover:bg-white hover:text-brand-dark">
-                Learn More About Installation
+              <Button asChild variant="outline" size="xl" className="border-white text-white hover:bg-white hover:text-brand-dark">
+                <Link to="/property-managers">Learn More About Installation</Link>
               </Button>
             </div>
           </div>

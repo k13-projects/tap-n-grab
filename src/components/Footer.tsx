@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import Picture from '@/components/Picture';
 
 const Footer = () => {
   return (
@@ -8,9 +9,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Description */}
           <div className="col-span-1 md:col-span-2">
-            <img 
-              src="/lovable-uploads/bbfa115a-c931-4ae6-a6fc-8560eb6c83b2.png" 
-              alt="Tap-N-Grab" 
+            <Picture
+              src="/lovable-uploads/bbfa115a-c931-4ae6-a6fc-8560eb6c83b2.png"
+              alt="Tap-N-Grab"
+              width={120}
+              height={32}
               className="h-8 w-auto mb-4 filter brightness-0 invert"
             />
             <p className="text-gray-300 mb-4 max-w-md">
