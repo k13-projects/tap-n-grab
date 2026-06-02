@@ -44,14 +44,29 @@ All colors MUST be HSL.
     --brand-dark: 210 11% 15%;
     --brand-gray: 210 9% 45%;
 
+    /* Techy dark surfaces (used by sleek sections like the machine lineup) */
+    --ink: 200 33% 7%;          /* near-black graphite */
+    --ink-2: 202 28% 11%;       /* raised panel */
+    --ink-3: 200 22% 16%;       /* hairline / border on dark */
+    --ink-foreground: 180 12% 90%;
+    --ink-muted: 195 10% 62%;
+
+    /* Temperature-zone accents (Pantry / Chill / Frost) */
+    --zone-pantry: 38 96% 56%;  /* warm amber */
+    --zone-chill: 188 95% 47%;  /* cold cyan */
+    --zone-frost: 212 96% 62%;  /* ice blue */
+
     /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(174 100% 29%), hsl(189 100% 35%));
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(210 13% 97%));
-    
+    --gradient-ink: radial-gradient(120% 120% at 50% 0%, hsl(202 28% 13%), hsl(200 33% 7%) 60%);
+    --gradient-glass: linear-gradient(145deg, hsl(0 0% 100% / 0.08), hsl(0 0% 100% / 0.02));
+
     /* Shadows */
     --shadow-soft: 0 4px 6px -1px hsl(174 100% 29% / 0.1);
     --shadow-medium: 0 10px 15px -3px hsl(174 100% 29% / 0.1);
     --shadow-large: 0 25px 50px -12px hsl(174 100% 29% / 0.15);
+    --shadow-glow: 0 0 0 1px hsl(174 100% 40% / 0.25), 0 18px 50px -12px hsl(174 100% 35% / 0.45);
 
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

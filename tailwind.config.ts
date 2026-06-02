@@ -67,16 +67,31 @@ export default {
 					'teal-light': 'hsl(var(--brand-teal-light))',
 					dark: 'hsl(var(--brand-dark))',
 					gray: 'hsl(var(--brand-gray))'
+				},
+				ink: {
+					DEFAULT: 'hsl(var(--ink))',
+					2: 'hsl(var(--ink-2))',
+					3: 'hsl(var(--ink-3))',
+					foreground: 'hsl(var(--ink-foreground))',
+					muted: 'hsl(var(--ink-muted))'
+				},
+				zone: {
+					pantry: 'hsl(var(--zone-pantry))',
+					chill: 'hsl(var(--zone-chill))',
+					frost: 'hsl(var(--zone-frost))'
 				}
 			},
 			backgroundImage: {
 				'gradient-hero': 'var(--gradient-hero)',
-				'gradient-card': 'var(--gradient-card)'
+				'gradient-card': 'var(--gradient-card)',
+				'gradient-ink': 'var(--gradient-ink)',
+				'gradient-glass': 'var(--gradient-glass)'
 			},
 			boxShadow: {
 				'soft': 'var(--shadow-soft)',
 				'medium': 'var(--shadow-medium)',
-				'large': 'var(--shadow-large)'
+				'large': 'var(--shadow-large)',
+				'glow': 'var(--shadow-glow)'
 			},
 			fontFamily: {
 				sans: ['Inter', 'system-ui', 'sans-serif']
