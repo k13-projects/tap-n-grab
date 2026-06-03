@@ -83,7 +83,8 @@ const MachineLineup = () => {
             <button
               key={m.id}
               onClick={() => setActiveId(m.id)}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
+              aria-pressed={m.id === activeId}
+              className={`inline-flex min-h-11 items-center rounded-full px-5 text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink ${
                 m.id === activeId
                   ? 'bg-brand-teal text-white shadow-glow'
                   : 'bg-white/5 text-ink-muted ring-1 ring-ink-3 hover:bg-white/10 hover:text-ink-foreground'
