@@ -137,4 +137,22 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Keep large display headings from leaving orphan words on their own line. */
+  h1,
+  h2 {
+    text-wrap: balance;
+  }
+}
+
+/* Respect users who prefer reduced motion: neutralize transitions/animations. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
