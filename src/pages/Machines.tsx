@@ -3,6 +3,7 @@ import { ArrowRight, Snowflake, Refrigerator, Package } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import MachineLineup from '@/components/MachineLineup';
+import PageHero from '@/components/PageHero';
 import { Button } from '@/components/ui/button';
 import { MACHINES, ZONES, STATUS_LABELS, type ZoneKey } from '@/data/machines';
 
@@ -17,38 +18,26 @@ const Machines = () => {
     <div className="min-h-screen">
       <Header />
       <main>
-        {/* Dark intro band */}
-        <section className="bg-gradient-ink pt-40 pb-24 text-ink-foreground">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-teal">
-              The Machines
-            </span>
-            <h1 className="mx-auto mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-              A smart store that fits any community.
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-ink-muted">
-              Four models, one effortless tap. Start with a single cooler or
-              build a full modular market wall — every Tap-N-Grab machine shares
-              the same premium glass-front design and hands-off operation.
-            </p>
-            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <Button asChild variant="hero" size="xl" className="group">
-                <Link to="/property-managers">
-                  Schedule a Tour
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-0.5" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="xl"
-                variant="outline"
-                className="border-ink-3 bg-transparent text-ink-foreground hover:bg-white/5 hover:text-white"
-              >
-                <a href="#machines">Compare the lineup</a>
-              </Button>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          eyebrow="The Machines"
+          title="A smart store that fits any community."
+          subtitle="Four models, one effortless tap. Start with a single cooler or build a full modular market wall — every Tap-N-Grab machine shares the same premium glass-front design and hands-off operation."
+        >
+          <Button asChild variant="hero" size="xl" className="group">
+            <Link to="/property-managers">
+              Schedule a Tour
+              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          </Button>
+          <Button
+            asChild
+            size="xl"
+            variant="outline"
+            className="border-ink-3 bg-transparent text-ink-foreground hover:bg-white/5 hover:text-white"
+          >
+            <a href="#machines">Compare the lineup</a>
+          </Button>
+        </PageHero>
 
         {/* Interactive spotlight (reused) */}
         <MachineLineup />

@@ -1,5 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import PageHero from '@/components/PageHero';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Eye, Play } from 'lucide-react';
@@ -72,23 +73,16 @@ const Gallery = () => {
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="pt-16">
-        {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-br from-brand-teal-light to-white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold text-brand-dark mb-6">
-                Installation Gallery
-              </h1>
-              <p className="text-xl text-brand-gray mb-8">
-                See Tap-N-Grab in action across luxury apartment communities nationwide. Real installations, real residents, real results.
-              </p>
-              <Button asChild variant="hero" size="xl">
-                <Link to="/property-managers">Schedule Your Installation</Link>
-              </Button>
-            </div>
-          </div>
-        </section>
+      <main>
+        <PageHero
+          eyebrow="In the Wild"
+          title="Installation Gallery"
+          subtitle="See Tap-N-Grab in action across luxury apartment communities nationwide. Real installations, real residents, real results."
+        >
+          <Button asChild variant="hero" size="xl">
+            <Link to="/property-managers">Schedule Your Installation</Link>
+          </Button>
+        </PageHero>
 
         {/* Gallery Grid */}
         <section className="py-20 bg-white">
@@ -315,19 +309,19 @@ const Gallery = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-brand-dark text-white">
+        <section className="py-24 bg-gradient-ink text-ink-foreground">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
               Ready to See It in Your Building?
             </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-ink-muted mb-8 max-w-2xl mx-auto">
               Schedule a tour with Traig to see how Tap-N-Grab can enhance your property amenities with zero cost and zero work for your team.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild variant="hero" size="xl">
                 <Link to="/property-managers">Schedule Installation Tour</Link>
               </Button>
-              <Button asChild variant="outline" size="xl" className="border-white text-white hover:bg-white hover:text-brand-dark">
+              <Button asChild variant="outline" size="xl" className="border-ink-3 bg-transparent text-ink-foreground hover:bg-white/5 hover:text-white">
                 <Link to="/property-managers#callback">Request Callback</Link>
               </Button>
             </div>
