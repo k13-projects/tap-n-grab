@@ -62,8 +62,8 @@ const HeroSection = () => {
           <div className="relative">
             <div className="relative overflow-hidden rounded-2xl shadow-large">
               <Picture
-                src="/lovable-uploads/17ec5cff-d060-42e7-9e2e-2d67e9157f93.png"
-                alt="Tap-N-Grab Smart Market in Luxury Apartment"
+                src="/lovable-uploads/tng-hero-lobby.png"
+                alt="Tap-N-Grab smart market in a warm, upscale apartment lobby"
                 width={1024}
                 height={1024}
                 loading="eager"

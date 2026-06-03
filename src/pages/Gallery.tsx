@@ -11,7 +11,7 @@ const GALLERY_ITEMS = [
   {
     id: 1,
     type: 'image',
-    src: '/lovable-uploads/cf478d22-8b25-4642-beb9-fbc803c97e7c.png',
+    src: '/lovable-uploads/tng-machine-lobby.png',
     title: 'Luxury Apartment Installation',
     description: 'Tap-N-Grab smart market seamlessly integrated into a modern apartment lobby setting',
     category: 'Installation',
