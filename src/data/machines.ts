@@ -60,6 +60,8 @@ export interface Machine {
   specs: { label: string; value: string }[];
   /** Approximate footprint, width in inches. */
   footprintIn: number;
+  /** Photographic product shot (.png; Picture resolves the .avif sibling). */
+  image: string;
 }
 
 export const MACHINES: Machine[] = [
@@ -80,6 +82,7 @@ export const MACHINES: Machine[] = [
       { label: 'Restock', value: 'Data-driven' },
     ],
     footprintIn: 108,
+    image: '/lovable-uploads/tng-smart-store.png',
   },
   {
     id: 'duo',
@@ -98,6 +101,7 @@ export const MACHINES: Machine[] = [
       { label: 'Restock', value: 'Data-driven' },
     ],
     footprintIn: 72,
+    image: '/lovable-uploads/tng-smart-store-duo.png',
   },
   {
     id: 'market',
@@ -116,6 +120,7 @@ export const MACHINES: Machine[] = [
       { label: 'Restock', value: 'Managed' },
     ],
     footprintIn: 40,
+    image: '/lovable-uploads/tng-machine-lobby.png',
   },
   {
     id: 'mini',
@@ -134,6 +139,7 @@ export const MACHINES: Machine[] = [
       { label: 'Restock', value: 'Managed' },
     ],
     footprintIn: 28,
+    image: '/lovable-uploads/tng-hero-lobby.png',
   },
 ];
 

@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { CheckCircle, Clock, Users, Zap } from 'lucide-react';
+import { CheckCircle, Clock, Users, Zap, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Picture from '@/components/Picture';
 
@@ -12,79 +12,101 @@ const BENEFITS = [
 
 const HeroSection = () => {
   return (
-    <section className="pt-16 bg-gradient-to-br from-white via-brand-teal-light to-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <section className="relative overflow-hidden bg-gradient-ink pt-32 pb-20 text-ink-foreground">
+      {/* ambient glow */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-32 left-1/2 h-96 w-[60rem] -translate-x-1/2 rounded-full bg-brand-teal/20 blur-[120px]"
+      />
+
+      <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
           <div className="space-y-8">
-            <div className="space-y-4">
-              <h1 className="text-4xl font-bold text-brand-dark leading-tight text-center md:text-5xl">
-                Offer Residents an
-                <span className="bg-gradient-hero bg-clip-text text-transparent"> Amenity They'll Love</span>
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-1.5 text-sm font-medium text-brand-teal ring-1 ring-ink-3">
+              <span className="h-2 w-2 rounded-full bg-brand-teal" />
+              Now introducing
+            </span>
+
+            <div className="space-y-5">
+              <h1 className="text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+                The all-new
+                <span className="block bg-gradient-to-r from-brand-teal to-zone-chill bg-clip-text text-transparent">
+                  Tap-N-Grab Smart Store
+                </span>
               </h1>
-              <p className="text-xl text-brand-gray max-w-lg">
-                The smarter, sleeker amenity for your residents. From a single
-                cooler to a full modular market wall — 24/7 curated snacks and
-                drinks, with zero work for your team.
+              <p className="max-w-lg text-xl text-ink-muted">
+                A premium, glass-front market that runs itself. Snacks, cold
+                drinks, and frozen treats behind a single tap — 24/7, with zero
+                work for your property team.
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Button asChild variant="hero" size="xl" className="group">
+                <Link to="/property-managers">
+                  Schedule a Tour
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-0.5" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                size="xl"
+                variant="outline"
+                className="border-ink-3 bg-transparent text-ink-foreground hover:bg-white/5 hover:text-white"
+              >
+                <Link to="/machines">Explore the lineup</Link>
+              </Button>
+            </div>
+
+            <div className="grid max-w-lg grid-cols-2 gap-3">
               {BENEFITS.map((benefit) => (
-                <div key={benefit.text} className="flex items-center space-x-3 p-4 bg-white/50 rounded-lg backdrop-blur-sm">
-                  <benefit.icon className="h-6 w-6 text-brand-teal" />
-                  <span className="text-sm font-medium text-brand-dark">{benefit.text}</span>
+                <div
+                  key={benefit.text}
+                  className="flex items-center gap-3 rounded-xl bg-white/5 px-4 py-3 ring-1 ring-ink-3"
+                >
+                  <benefit.icon className="h-5 w-5 shrink-0 text-brand-teal" />
+                  <span className="text-sm font-medium text-ink-foreground">{benefit.text}</span>
                 </div>
               ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild variant="hero" size="xl" className="group">
-                <Link to="/property-managers">
-                  Schedule a Tour
-                  <Zap className="ml-2 h-5 w-5 group-hover:animate-pulse" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="xl">
-                <Link to="/gallery">View Gallery</Link>
-              </Button>
-            </div>
-
-            <div className="flex items-center space-x-4 text-sm text-brand-gray">
+            <div className="flex items-center gap-4 text-sm text-ink-muted">
               <div className="flex -space-x-2" aria-hidden="true">
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className="w-8 h-8 rounded-full bg-brand-teal border-2 border-white"></div>
+                  <div key={i} className="h-8 w-8 rounded-full bg-brand-teal ring-2 ring-ink" />
                 ))}
               </div>
               <span>Trusted by 50+ luxury apartment communities</span>
             </div>
           </div>
 
+          {/* Product showcase */}
           <div className="relative">
-            <div className="relative overflow-hidden rounded-2xl shadow-large">
+            <div className="relative overflow-hidden rounded-2xl border border-ink-3 shadow-glow">
               <Picture
-                src="/lovable-uploads/tng-hero-lobby.png"
-                alt="Tap-N-Grab smart market in a warm, upscale apartment lobby"
-                width={1024}
-                height={1024}
+                src="/lovable-uploads/tng-smart-store.png"
+                alt="The Tap-N-Grab Smart Store — a three-bay glass-front market in an upscale lobby"
+                width={1408}
+                height={768}
                 loading="eager"
                 fetchPriority="high"
-                className="w-full h-auto object-cover"
+                className="h-full w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              {/* Logo sign on the machine valance */}
+              <img
+                src="/lovable-uploads/5c006de5-ed16-49aa-94f2-83f4ff2451e8.png"
+                alt="Tap-N-Grab"
+                className="absolute left-1/2 top-[5%] h-[9%] w-auto -translate-x-1/2 drop-shadow"
+              />
             </div>
 
-            <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-medium">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-brand-teal">24/7</div>
-                <div className="text-sm text-brand-gray">Always Available</div>
-              </div>
+            <div className="absolute -bottom-5 -left-5 rounded-xl border border-ink-3 bg-ink-2/90 px-5 py-4 text-center backdrop-blur">
+              <div className="text-2xl font-bold text-brand-teal">24/7</div>
+              <div className="text-xs text-ink-muted">Always open</div>
             </div>
-
-            <div className="absolute -top-6 -right-6 bg-white p-6 rounded-xl shadow-medium">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-brand-teal">0%</div>
-                <div className="text-sm text-brand-gray">Management Work</div>
-              </div>
+            <div className="absolute -top-5 -right-5 rounded-xl border border-ink-3 bg-ink-2/90 px-5 py-4 text-center backdrop-blur">
+              <div className="text-2xl font-bold text-brand-teal">0%</div>
+              <div className="text-xs text-ink-muted">Management work</div>
             </div>
           </div>
         </div>

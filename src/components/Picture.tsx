@@ -18,6 +18,9 @@ const Picture = ({
   fetchPriority,
 }: PictureProps) => {
   const avifSrc = src.replace(/\.png$/i, '.avif');
+  // React 18 only maps the lowercase `fetchpriority` attribute to the DOM;
+  // the camelCase prop triggers an "unknown prop" warning.
+  const priorityAttr = (fetchPriority ? { fetchpriority: fetchPriority } : {}) as Record<string, string>;
   return (
     <picture>
       <source srcSet={avifSrc} type="image/avif" />
@@ -28,8 +31,8 @@ const Picture = ({
         height={height}
         loading={loading}
         decoding="async"
-        fetchPriority={fetchPriority}
         className={className}
+        {...priorityAttr}
       />
     </picture>
   );

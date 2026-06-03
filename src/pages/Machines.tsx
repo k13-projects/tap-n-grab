@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import MachineLineup from '@/components/MachineLineup';
 import PageHero from '@/components/PageHero';
+import Picture from '@/components/Picture';
 import { Button } from '@/components/ui/button';
 import { MACHINES, ZONES, STATUS_LABELS, type ZoneKey } from '@/data/machines';
 
@@ -103,26 +104,34 @@ const Machines = () => {
               {MACHINES.map((m) => (
                 <div
                   key={m.id}
-                  className="flex flex-col rounded-2xl border border-border bg-white p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-medium"
+                  className="flex flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-medium"
                 >
-                  <div className="mb-4 flex items-center justify-between">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-ink-2">
+                    <Picture
+                      src={m.image}
+                      alt={`${m.name} smart store`}
+                      width={800}
+                      height={600}
+                      className="h-full w-full object-cover"
+                    />
                     <span
-                      className={`rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide ${
+                      className={`absolute left-3 top-3 rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide ${
                         m.status === 'flagship'
                           ? 'bg-brand-teal text-white'
                           : m.status === 'new'
-                            ? 'bg-zone-chill/15 text-zone-chill ring-1 ring-zone-chill/30'
-                            : 'bg-brand-teal-light text-brand-gray'
+                            ? 'bg-zone-chill text-white'
+                            : 'bg-white/90 text-brand-gray'
                       }`}
                     >
                       {STATUS_LABELS[m.status]}
                     </span>
-                    <div className="flex gap-1">
+                    <div className="absolute right-3 top-3 flex gap-1">
                       {m.zones.map((z, i) => (
-                        <span key={`${z}-${i}`} className={`h-2 w-2 rounded-full ${ZONE_META[z].dot}`} />
+                        <span key={`${z}-${i}`} className={`h-2.5 w-2.5 rounded-full ring-1 ring-black/20 ${ZONE_META[z].dot}`} />
                       ))}
                     </div>
                   </div>
+                  <div className="flex flex-1 flex-col p-6">
                   <h3 className="text-lg font-bold text-brand-dark">{m.name}</h3>
                   <p className="mt-1 text-sm font-medium text-brand-teal">{m.tagline}</p>
                   <p className="mt-3 flex-1 text-sm text-brand-gray">{m.bestFor}</p>
@@ -134,6 +143,7 @@ const Machines = () => {
                       </div>
                     ))}
                   </dl>
+                  </div>
                 </div>
               ))}
             </div>

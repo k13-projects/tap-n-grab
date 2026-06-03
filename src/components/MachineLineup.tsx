@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import Picture from '@/components/Picture';
 import { MACHINES, ZONES, STATUS_LABELS, type Machine, type ZoneKey } from '@/data/machines';
 
 const ZONE_CLASS: Record<ZoneKey, string> = {
@@ -9,38 +10,6 @@ const ZONE_CLASS: Record<ZoneKey, string> = {
   chill: 'bg-zone-chill',
   frost: 'bg-zone-frost',
 };
-
-/** Original CSS rendering of a glass-front cabinet with glowing temperature bays. */
-function MachineGlyph({ machine }: { machine: Machine }) {
-  return (
-    <div className="flex h-44 items-end justify-center gap-1.5" aria-hidden="true">
-      {machine.zones.map((zone, i) => (
-        <div
-          key={`${zone}-${i}`}
-          className="relative flex h-full w-12 flex-col overflow-hidden rounded-md border border-ink-3 bg-ink-2 sm:w-14"
-        >
-          {/* glass glow */}
-          <span
-            className={`absolute inset-x-0 top-0 h-1 ${ZONE_CLASS[zone]}`}
-          />
-          <span
-            className={`absolute -top-6 left-1/2 h-16 w-16 -translate-x-1/2 rounded-full ${ZONE_CLASS[zone]} opacity-20 blur-xl`}
-          />
-          {/* faux shelves */}
-          <div className="mt-3 flex flex-1 flex-col justify-evenly px-1.5">
-            {[0, 1, 2, 3].map((s) => (
-              <span key={s} className="h-1.5 rounded-sm bg-white/10" />
-            ))}
-          </div>
-          {/* zone label */}
-          <span className="pb-1 text-center text-[9px] font-semibold uppercase tracking-wider text-ink-muted">
-            {ZONES[zone].name}
-          </span>
-        </div>
-      ))}
-    </div>
-  );
-}
 
 function StatusBadge({ status }: { status: Machine['status'] }) {
   const styles =
@@ -96,12 +65,27 @@ const MachineLineup = () => {
         </div>
 
         {/* Active machine spotlight */}
-        <div className="grid items-center gap-10 rounded-3xl border border-ink-3 bg-ink-2/60 p-8 backdrop-blur-sm lg:grid-cols-2 lg:p-12">
-          <div className="flex flex-col items-center">
-            <div className="rounded-2xl border border-ink-3 bg-gradient-glass p-8 shadow-glow">
-              <MachineGlyph machine={active} />
+        <div className="grid items-center gap-10 rounded-3xl border border-ink-3 bg-ink-2/60 p-6 backdrop-blur-sm lg:grid-cols-2 lg:p-10">
+          <div className="overflow-hidden rounded-2xl border border-ink-3 bg-black/40 shadow-glow">
+            <Picture
+              src={active.image}
+              alt={`${active.name} smart store`}
+              width={1024}
+              height={768}
+              className="h-full w-full object-cover"
+            />
+          </div>
+
+          <div>
+            <div className="mb-4 flex flex-wrap items-center gap-3">
+              <StatusBadge status={active.status} />
+              <span className="text-sm text-ink-muted">{active.bestFor}</span>
             </div>
-            <div className="mt-6 flex flex-wrap justify-center gap-2">
+            <h3 className="text-3xl font-bold tracking-tight">{active.name}</h3>
+            <p className="mt-1 text-lg font-medium text-brand-teal">{active.tagline}</p>
+            <p className="mt-4 text-ink-muted">{active.description}</p>
+
+            <div className="mt-6 flex flex-wrap gap-2">
               {active.zones.map((zone, i) => (
                 <span
                   key={`${zone}-${i}`}
@@ -112,18 +96,8 @@ const MachineLineup = () => {
                 </span>
               ))}
             </div>
-          </div>
 
-          <div>
-            <div className="mb-4 flex items-center gap-3">
-              <StatusBadge status={active.status} />
-              <span className="text-sm text-ink-muted">{active.bestFor}</span>
-            </div>
-            <h3 className="text-3xl font-bold tracking-tight">{active.name}</h3>
-            <p className="mt-1 text-lg font-medium text-brand-teal">{active.tagline}</p>
-            <p className="mt-4 text-ink-muted">{active.description}</p>
-
-            <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-ink-3 bg-ink-3 sm:grid-cols-4">
+            <dl className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-ink-3 bg-ink-3 sm:grid-cols-4">
               {active.specs.map((spec) => (
                 <div key={spec.label} className="bg-ink-2 p-4 text-center">
                   <dt className="text-[11px] uppercase tracking-wide text-ink-muted">{spec.label}</dt>

@@ -23,3 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 .gstack/
+
+.claude/settings.json
+.claude/settings.local.json
