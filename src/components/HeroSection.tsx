@@ -22,7 +22,9 @@ const HeroSection = () => {
                 <span className="bg-gradient-hero bg-clip-text text-transparent"> Amenity They'll Love</span>
               </h1>
               <p className="text-xl text-brand-gray max-w-lg">
-                The smarter, sleeker amenity for your residents. 24/7 access to curated snacks and drinks with zero property management required.
+                The smarter, sleeker amenity for your residents. From a single
+                cooler to a full modular market wall — 24/7 curated snacks and
+                drinks, with zero work for your team.
               </p>
             </div>
 
