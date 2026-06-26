@@ -1,5 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import PageHero from '@/components/PageHero';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -97,27 +98,20 @@ const PropertyManagers = () => {
   };
   return <div className="min-h-screen">
       <Header />
-      <main className="pt-16">
-        {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-br from-brand-teal-light to-white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold text-brand-dark mb-6">
-                For Property Managers
-              </h1>
-              <p className="text-xl text-brand-gray mb-8">
-                Transform your property amenities with zero cost and zero work. Let Traig show you how Tap-N-Grab can enhance resident satisfaction.
-              </p>
-              <Button
-                variant="hero"
-                size="xl"
-                onClick={() => callbackRef.current?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Schedule a Tour with Traig
-              </Button>
-            </div>
-          </div>
-        </section>
+      <main>
+        <PageHero
+          eyebrow="For Property Managers"
+          title="A premium amenity with zero cost, zero work."
+          subtitle="Transform your property amenities with zero cost and zero work. Let Traig show you how Tap-N-Grab can enhance resident satisfaction."
+        >
+          <Button
+            variant="hero"
+            size="xl"
+            onClick={() => callbackRef.current?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            Schedule a Tour with Traig
+          </Button>
+        </PageHero>
 
         {/* Benefits Section */}
         <section className="py-20 bg-white">
@@ -396,9 +390,11 @@ const PropertyManagers = () => {
                     <p className="text-brand-gray mb-4 text-sm">
                       Complete overview with benefits, process, and contact information.
                     </p>
-                    <Button variant="outline" size="sm">
-                      <Download className="mr-2 h-4 w-4" />
-                      Download
+                    <Button asChild variant="outline" size="sm">
+                      <a href="/tap-n-grab-one-pager.pdf" download>
+                        <Download className="mr-2 h-4 w-4" />
+                        Download
+                      </a>
                     </Button>
                   </CardContent>
                 </Card>

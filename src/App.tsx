@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 
 const About = lazy(() => import("./pages/About"));
+const Machines = lazy(() => import("./pages/Machines"));
 const PropertyManagers = lazy(() => import("./pages/PropertyManagers"));
 const Gallery = lazy(() => import("./pages/Gallery"));
 const Rewards = lazy(() => import("./pages/Rewards"));
@@ -30,6 +31,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
+            <Route path="/machines" element={<Machines />} />
             <Route path="/property-managers" element={<PropertyManagers />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/rewards" element={<Rewards />} />

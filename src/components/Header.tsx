@@ -6,6 +6,7 @@ import Picture from '@/components/Picture';
 
 const NAVIGATION = [
   { name: 'Home', href: '/' },
+  { name: 'Machines', href: '/machines' },
   { name: 'About', href: '/about' },
   { name: 'For Property Managers', href: '/property-managers' },
   { name: 'Gallery', href: '/gallery' },
